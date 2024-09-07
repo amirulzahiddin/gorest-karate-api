@@ -1,3 +1,4 @@
+@regressionGoRest
 Feature: This is a feature to retrieve user details via https://gorest.co.in
 
   Background:
@@ -8,6 +9,7 @@ Feature: This is a feature to retrieve user details via https://gorest.co.in
     * def GETPublicV2Users = 'classpath:tests/get-public-users.feature@GETPublicV2Users'
 
   # (shared scope)
+  @ignore
   @GETPublicV2Users
   Scenario: Get user details
     Given path pathName

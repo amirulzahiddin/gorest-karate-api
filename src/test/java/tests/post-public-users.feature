@@ -21,6 +21,7 @@ Feature: This is a feature to execute endpoints in https://gorest.co.in
     * def status = typeof status !== 'undefined' ? status : utils.getRandom(['active','inactive'])
 
   # (shared scope)
+  @ignore
   @POSTPublicV2Users
   Scenario: Create a new user
     Given path pathName
@@ -50,11 +51,16 @@ Feature: This is a feature to execute endpoints in https://gorest.co.in
 
     When call read(POSTPublicV2Users)
 
-    Then match responseStatus == <responseStatus>
-    And match response.field == '<field>'
-    And match response.message == '<message>'
+    Then match responseStatus == 422
+    And match response[0].field == "<field>"
+    And match response[0].message == "<message>"
 
     Examples:
-      | name      | email           | gender | status | responseStatus | field | message                |
-      | some name | email           | male   | active | 422            | email | is invalid             |
-      | some name | email@email.com | male   | active | 422            | email | has already been taken |
+      | name      | gender | email           | status | field  | message                               | scenario                       |
+      |           | male   | email@email.com | active | name   | can't be blank                        | name is empty                  |
+      | some name |        | email@email.com | active | gender | can't be blank, can be male of female | gender is empty                |
+      | some name | gender | email@email.com | active | gender | can't be blank, can be male of female | gender is in invalid format    |
+      | some name | male   | email           | active | email  | is invalid                            | email is in invalid format     |
+      | some name | male   | email@email.com | active | email  | has already been taken                | email specified already exists |
+      | some name | male   | email@email.com |        | status | can't be blank                        | status is empty                |
+      | some name | male   | email@email.com | status | status | can't be blank                        | status is in invalid format    |
