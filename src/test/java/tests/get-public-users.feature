@@ -15,6 +15,7 @@ Feature: This is a feature to retrieve user details via GET /public/v2/users end
     Given path pathName
     When method GET
 
+  @smokeGoRest
   @retrievePublicUser
   Scenario: Retrieve a user details successfully
 

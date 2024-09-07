@@ -1,0 +1,14 @@
+{
+  "field": [
+    "name",
+    "gender",
+    "email",
+    "status"
+  ],
+  "message": [
+    "can't be blank",
+    "can't be blank, can be male of female",
+    "is invalid",
+    "has already been taken"
+  ]
+}
