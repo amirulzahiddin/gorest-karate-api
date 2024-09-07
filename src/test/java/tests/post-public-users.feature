@@ -1,17 +1,16 @@
 @regressionGoRest
-Feature: This is a feature to execute endpoints in https://gorest.co.in
+Feature: This is a feature to create new user via POST /public/v2/users endpoint
 
   Background:
 
     * url URL_GOREST_CO_IN
-    * def pathName = 'public/v2/users'
-
-    * def utils = Java.type('utils.commonUtils');
+    * def pathName = PATH_NAME
 
     * def POSTPublicV2Users = 'classpath:tests/post-public-users.feature@POSTPublicV2Users'
     * def requestBody = read('classpath:properties/request-body.json')
     * def responseBody = read('classpath:properties/response-body.json')
 
+    * def utils = Java.type('utils.commonUtils')
     * def accessToken = 'Bearer ' + ACCESS_TOKEN
     * configure headers = { 'Authorization': #(accessToken) }
 

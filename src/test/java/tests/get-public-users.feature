@@ -1,10 +1,10 @@
 @regressionGoRest
-Feature: This is a feature to retrieve user details via https://gorest.co.in
+Feature: This is a feature to retrieve user details via GET /public/v2/users endpoint
 
   Background:
 
     * url URL_GOREST_CO_IN
-    * def pathName = 'public/v2/users'
+    * def pathName = PATH_NAME
 
     * def GETPublicV2Users = 'classpath:tests/get-public-users.feature@GETPublicV2Users'
 

@@ -1,6 +1,5 @@
 {
-  "URLS": {
-    "URL_GOREST_CO_IN": "https://gorest.co.in/"
-  },
+  "URL_GOREST_CO_IN": "https://gorest.co.in/",
+  "PATH_NAME": "public/v2/users",
   "ACCESS_TOKEN": "8d6b8d9b8adae32641b3c2771b0ead077e0bb512ed1e3c860fef48a5ea5f20c1"
 }
