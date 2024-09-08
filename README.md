@@ -13,13 +13,13 @@ It is also carefully designed to allow seamless and frictionless contribution, b
 This project is created with the following setup which serves as a guideline to the required pre-requisites:
 1. Java version 17 or above.
 2. Apache Maven version 3.8.1 or above.
-3. `JAVA_HOME` and `MAVEN_HOME` environment variables.
+3. `JAVA_HOME`, `MAVEN_HOME` and `ACCESS_TOKEN` environment variables.
+   1. `ACCESS_TOKEN` should be generated via https://gorest.co.in/my-account/access-tokens and stored in the system.
 4. IntelliJ IDEA with below plugins which may not be readily bundled:
    1. Cucumber for Java
    2. Gherkin
    3. Karate
-5. Clone the project via Terminal or Command Prompt, depending on the OS used:
-   1. `git clone https://github.com/amirulzahiddin/gorest-karate-api.git`
+5. Clone the project with the command `git clone https://github.com/amirulzahiddin/gorest-karate-api.git`.
 6. Build and run the project with the command `mvn clean install`. This will remove `target` folder containing any test report artifacts and initiate test execution across all available test scenarios.
 
 ## Project Structure
@@ -64,8 +64,8 @@ This can be easily done by breaking `tests` and `properties` folder into sub-fol
 
 ## Executing Tests
 1. Navigate to any of the feature files, e.g.: `/tests/end-to-end-tests.feature`.
-2. Run below command in the terminal:
-   1. `mvn clean test "-Dkarate.options=--tags @endToEndTest"`
+2. Run the command `mvn clean test "-Dkarate.options=--tags @endToEndTest"`.
+   1. If the `ACCESS_TOKEN` environment variable is not set as prescribed under Getting Started section, the command can be directly included with the generated access token `mvn clean test "-Daccess.token=your-access-token" "-Dkarate.options=--tags @endToEndTest"`.
 3. Once the test is successfully executed, a summary of the test execution will be printed along with the HTML report as illustrated below:
 ```
 ---------------------------------------------------------
