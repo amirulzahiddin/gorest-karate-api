@@ -9,11 +9,14 @@ Feature: This feature retrieves user details via the GET /public/v2/users endpoi
     * def pathName = PATH_NAME_USERS
 
     * def GETPublicV2Users = 'classpath:tests/get-public-users.feature@GETPublicV2Users'
+    * def requestBody = read('classpath:properties/get-request-body.json')
     * def responseBody = read('classpath:properties/response-body.json')
     * def userEnums = read('classpath:properties/user-enums.json')
 
     * def utils = Java.type('utils.commonUtils')
     * def id = typeof id !== 'undefined' ? id : null
+    * def page = typeof page !== 'undefined' ? page : null
+    * def per_page = typeof per_page !== 'undefined' ? per_page : null
 
     * def accessToken = 'Bearer ' + ACCESS_TOKEN
     * def headers = typeof headers !== 'undefined' ? headers : null
@@ -24,6 +27,7 @@ Feature: This feature retrieves user details via the GET /public/v2/users endpoi
   Scenario: Retrieve the list of users with optional id.
     Given path pathName, id
     And configure headers = headers
+    And params requestBody
     When method GET
 
   # Scenario 2

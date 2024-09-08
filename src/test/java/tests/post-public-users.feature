@@ -7,7 +7,7 @@ Feature: This feature creates new employee entry via the POST /public/v2/users e
     * def pathName = PATH_NAME_USERS
 
     * def POSTPublicV2Users = 'classpath:tests/post-public-users.feature@POSTPublicV2Users'
-    * def requestBody = read('classpath:properties/request-body.json')
+    * def requestBody = read('classpath:properties/post-request-body.json')
     * def responseBody = read('classpath:properties/response-body.json')
     * def errorMessages = read('classpath:properties/error-messages.json')
     * def userEnums = read('classpath:properties/user-enums.json')
