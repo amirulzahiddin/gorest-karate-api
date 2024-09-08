@@ -9,6 +9,9 @@
     "can't be blank",
     "can't be blank, can be male of female",
     "is invalid",
-    "has already been taken"
+    "has already been taken",
+    "Resource not found",
+    "Authentication failed",
+    "Invalid token"
   ]
 }

@@ -1,10 +1,10 @@
 @regressionGoRest
-Feature: This is a feature to create new user via POST /public/v2/users endpoint
+Feature: This feature creates new employee entry via the POST /public/v2/users endpoint.
 
   Background:
 
     * url URL_GOREST_CO_IN
-    * def pathName = PATH_NAME
+    * def pathName = PATH_NAME_USERS
 
     * def POSTPublicV2Users = 'classpath:tests/post-public-users.feature@POSTPublicV2Users'
     * def requestBody = read('classpath:properties/request-body.json')
@@ -14,7 +14,7 @@ Feature: This is a feature to create new user via POST /public/v2/users endpoint
 
     * def utils = Java.type('utils.commonUtils')
     * def accessToken = 'Bearer ' + ACCESS_TOKEN
-    * configure headers = { 'Authorization': #(accessToken) }
+    * def headers = typeof headers !== 'undefined' ? headers : null
 
     * def name = typeof name !== 'undefined' ? name : utils.getRandomString(10)
     * def email = typeof email !== 'undefined' ? email : utils.getRandomEmailAddress(10)
@@ -24,15 +24,18 @@ Feature: This is a feature to create new user via POST /public/v2/users endpoint
   # (shared scope)
   @ignore
   @POSTPublicV2Users
-  Scenario: Create a new user
+  Scenario: Create a new employee entry.
     Given path pathName
+    And configure headers = headers
     And request requestBody
     When method POST
 
   # Scenario 1
   @smokeGoRest
-  @createPublicUser
-  Scenario: Create a new employee entry with complete details and verify the id returned is in numerical format
+  @createNewEmployeeEntry
+  Scenario: Create a new employee entry with complete details and verify the id returned is in numerical format.
+
+    Given def headers = { 'Authorization': #(accessToken) }
 
     When call read(POSTPublicV2Users)
 
@@ -43,10 +46,27 @@ Feature: This is a feature to create new user via POST /public/v2/users endpoint
     And match response.gender == gender
     And match response.status == status
 
-  @createPublicUserInvalidInput
-  Scenario Outline: Create a new user with invalid input where <scenario>
+  @createEmployeeEntryUnauthorizedHeader
+  Scenario Outline: Create an employee entry with unauthorized header where <scenario>.
 
-    Given def name = <name>
+    Given def headers = <headers>
+
+    When call read(POSTPublicV2Users)
+
+    Then match responseStatus == 401
+    And match response.message == <message>
+
+    Examples:
+      | headers                            | message                  | scenario                                   |
+      | { 'Authorization': authorization } | errorMessages.message[5] | authorization access token is invalid      |
+      | null                               | errorMessages.message[5] | authorization access token is empty        |
+      | { 'Authorization': Bearer 1      } | errorMessages.message[6] | authorization access token is non-existing |
+
+  @createEmployeeEntryInvalidInput
+  Scenario Outline: Create an employee entry with invalid input where <scenario>.
+
+    Given def headers = { 'Authorization': #(accessToken) }
+    And def name = <name>
     And def email = <email>
     And def gender = <gender>
     And def status = <status>
