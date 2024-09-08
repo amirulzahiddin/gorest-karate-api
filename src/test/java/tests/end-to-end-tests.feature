@@ -14,11 +14,11 @@ Feature: This is an end-to-end test for the complete user journey in GO REST API
 
     # Call GET /public/v2/users endpoint to retrieve the created employee entry
     * call read('classpath:tests/get-public-users.feature@GETPublicV2Users')
-    * match responseStatus == 200
+    * match response.id == id
 
     # Call PUT /public/v2/users endpoint to update the employee details
-    * call read('classpath:tests/put-public-users.feature@PUTPublicV2Users')
-    * match responseStatus == 200
+    * call read('classpath:tests/put-public-users.feature@updateUserDetails')
+    * match response.id == id
 
     # Call DELETE /public/v2/users endpoint to delete the employee entry
     * call read('classpath:tests/delete-public-users.feature@DELETEPublicV2Users')
