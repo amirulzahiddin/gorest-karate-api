@@ -20,7 +20,7 @@ This project is created with the following setup which serves as a guideline to 
    2. Gherkin
    3. Karate
 5. Clone the project with the command `git clone https://github.com/amirulzahiddin/gorest-karate-api.git`.
-6. Build and run the project with the command `mvn clean install`. This will remove `target` folder containing any test report artifacts and initiate test execution across all available test scenarios.
+6. Build and run the project with the command `mvn clean install`.
 
 ## Project Structure
 This project is designed based on the `/users` endpoints comprising the common HTTP methods used in software development, namely `GET`, `POST`, `PUT`, `DELETE` amongst others.
@@ -63,9 +63,10 @@ While this project is specifically tailored for `/users` endpoint, the structure
 This can be easily done by breaking `tests` and `properties` folder into sub-folders named after the endpoints to cater for different scenarios, request and response body respectively.
 
 ## Executing Tests
-1. Navigate to any of the feature files, e.g.: `/tests/end-to-end-tests.feature`.
-2. Run the command `mvn clean test "-Dkarate.options=--tags @endToEndTest"`.
-   1. If the `ACCESS_TOKEN` environment variable is not set as prescribed under Getting Started section, the command can be directly included with the generated access token `mvn clean test "-Daccess.token=your-access-token" "-Dkarate.options=--tags @endToEndTest"`.
+1. To execute all tests, run the command `mvn clean test`.
+2. To execute specific test(s), navigate to any of the feature files to identify the Karate tags needed for test execution.
+   1. Run the command `mvn clean test "-Dkarate.options=--tags @specify-karate-tag-here"`.
+   2. If the `ACCESS_TOKEN` environment variable is not set as prescribed under Getting Started section, the generated access token can be directly included in the command `mvn clean test "-Daccess.token=specify-access-token-here" "-Dkarate.options=--tags @specify-karate-tag-here"`.
 3. Once the test is successfully executed, a summary of the test execution will be printed along with the HTML report as illustrated below:
 ```
 ---------------------------------------------------------
