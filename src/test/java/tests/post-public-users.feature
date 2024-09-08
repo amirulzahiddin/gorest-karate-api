@@ -29,9 +29,10 @@ Feature: This is a feature to create new user via POST /public/v2/users endpoint
     And request requestBody
     When method POST
 
+  # Scenario 1
   @smokeGoRest
   @createPublicUser
-  Scenario: Create a new user with complete details successfully
+  Scenario: Create a new employee entry with complete details and verify the id returned is in numerical format
 
     When call read(POSTPublicV2Users)
 
