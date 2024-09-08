@@ -15,7 +15,7 @@ Feature: This feature updates user details via the PUT /public/v2/users endpoint
     * def accessToken = 'Bearer ' + ACCESS_TOKEN
     * def headers = typeof headers !== 'undefined' ? headers : null
 
-    * def id = typeof id !== 'undefined' ? id : 7393345
+    * def id = typeof id !== 'undefined' ? id : karate.call('classpath:tests/post-public-users.feature@createNewUser').response.id
     * def name = typeof name !== 'undefined' ? name : utils.getRandomString(10)
     * def email = typeof email !== 'undefined' ? email : utils.getRandomEmailAddress(10)
     * def status = typeof status !== 'undefined' ? status : utils.getRandom(userEnums.status)
