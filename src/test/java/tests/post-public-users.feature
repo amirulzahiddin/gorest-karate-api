@@ -1,5 +1,5 @@
 @regressionGoRest
-Feature: This feature creates new employee entry via the POST /public/v2/users endpoint.
+Feature: This feature creates a new user via the POST /public/v2/users endpoint.
 
   Background:
 
@@ -24,7 +24,7 @@ Feature: This feature creates new employee entry via the POST /public/v2/users e
   # (shared scope)
   @ignore
   @POSTPublicV2Users
-  Scenario: Create a new employee entry.
+  Scenario: Create a new user.
     Given path pathName
     And configure headers = headers
     And request requestBody
@@ -32,7 +32,7 @@ Feature: This feature creates new employee entry via the POST /public/v2/users e
 
   # Scenario 1
   @smokeGoRest
-  @createNewEmployeeEntry
+  @createNewUser
   Scenario: Create a new employee entry with complete details and verify the id returned is in numerical format.
 
     Given def headers = { 'Authorization': #(accessToken) }
@@ -46,8 +46,8 @@ Feature: This feature creates new employee entry via the POST /public/v2/users e
     And match response.gender == gender
     And match response.status == status
 
-  @createEmployeeEntryUnauthorizedHeader
-  Scenario Outline: Create an employee entry with unauthorized header where <scenario>.
+  @createNewUserWithoutAuthorization
+  Scenario Outline: Create a new user without authorization where <scenario>.
 
     Given def headers = <headers>
 
@@ -62,8 +62,8 @@ Feature: This feature creates new employee entry via the POST /public/v2/users e
       | null                               | errorMessages.message[5] | authorization access token is empty        |
       | { 'Authorization': Bearer 1      } | errorMessages.message[6] | authorization access token is non-existing |
 
-  @createEmployeeEntryInvalidInput
-  Scenario Outline: Create an employee entry with invalid input where <scenario>.
+  @createNewUserInvalidInput
+  Scenario Outline: Create a new user with invalid input where <scenario>.
 
     Given def headers = { 'Authorization': #(accessToken) }
     And def name = <name>

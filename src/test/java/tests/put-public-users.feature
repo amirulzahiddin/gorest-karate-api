@@ -34,7 +34,7 @@ Feature: This feature updates user details via the PUT /public/v2/users endpoint
   Scenario: Update user details successfully.
 
     Given def headers = { 'Authorization': #(accessToken) }
-    And def id = 7393236
+    And def id = 7393345
 
     When call read(PUTPublicV2Users)
 
